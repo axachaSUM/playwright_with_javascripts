@@ -62,6 +62,7 @@ test('Login with old user', async ({ page, context, }) => {
   
   await newPage.close();
 
+
   
 
   // click on my account button
