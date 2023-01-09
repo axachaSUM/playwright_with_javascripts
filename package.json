@@ -1,0 +1,11 @@
+{
+  "devDependencies": {
+    "@playwright/test": "^1.29.1",
+    "playwright": "^1.29.1"
+  },
+  "scripts": {},
+  "dependencies": {
+    "browsers": "^0.4.9",
+    "playwright-qase-reporter": "^1.2.0-alpha.3"
+  }
+}
