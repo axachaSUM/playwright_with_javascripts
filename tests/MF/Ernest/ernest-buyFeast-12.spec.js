@@ -58,7 +58,7 @@ await fillStripeInfo(page);
 
 // Click button:has-text("See all orders")
 await page.locator('button:has-text("See all orders")').click();
-await expect(page).toHaveURL('https://frontend.staging.mfeast.io/member-account/my-feasts');
+await expect(page).toHaveURL('https://frontend.staging.mfeast.io/member-account/account/my-feasts');
 
 // await page.reload();
 // await expect(page.getByText('Ordered')).toBeVisible();
