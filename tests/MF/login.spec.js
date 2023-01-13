@@ -5,11 +5,6 @@ test.setTimeout(1200000)
 
 test('Login with old user and buy feast', async ({ page, context, }) => {
 
-  // const tab1 = await context.newPage();
-  // await tab1.goto('https://www.fakemail.net/');
-  // const mail = await tab1.evaluate(() => document.getElementById('email').innerHTML);
-
-
   await page.goto('https://mfstaging.webflow.io/');
   await page.getByRole('link', { name: 'reserve FEAST' }).nth(1).click();
   await page.getByRole('link', { name: 'Reserve your feast' }).first().click();
@@ -55,8 +50,6 @@ test('Login with old user and buy feast', async ({ page, context, }) => {
   await newPage.waitForTimeout(2000);
 
   await newPage.locator("text=reed >> nth=0", { timeout: 10000 }).click();
-
-  // await newPage.getByRole('heading', { name: 'reed' }).click();
   
   await newPage.locator("text=PAYMENT", { timeout: 10000 }).click();
 
@@ -64,7 +57,6 @@ test('Login with old user and buy feast', async ({ page, context, }) => {
 
   await newPage.getByRole("button", { name: "See all orders" }).click();
 
-  // await newPage.locator('button:has-text("See all orders")').click();
   await expect(newPage).toHaveURL('https://frontend.staging.mfeast.io/member-account/account/my-feasts');
   
   await newPage.close();
