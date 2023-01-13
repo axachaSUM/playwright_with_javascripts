@@ -3,7 +3,7 @@ import { fillStripeInfo } from '../utils/stripe';
 
 test.setTimeout(1200000)
 
-test('Login with old user', async ({ page, context, }) => {
+test('Login with old user and buy feast', async ({ page, context, }) => {
 
   // const tab1 = await context.newPage();
   // await tab1.goto('https://www.fakemail.net/');
