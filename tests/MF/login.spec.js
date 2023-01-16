@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test';
 import { fillStripeInfo } from '../utils/stripe';
+import { gmailLogin } from '../utils/gmailLogin';
 
 test.setTimeout(1200000)
 
@@ -11,12 +12,8 @@ test('Login with old user and buy feast', async ({ page, context, }) => {
   await page.getByPlaceholder('Enter your email...').fill('mjtesterovic@gmail.com');
   await page.getByRole('button', { name: 'Continue' }).click();
 
-  await page.goto('https://mail.google.com/mail/u/0/#inbox');
-  await page.fill('#identifierId', 'mjtesterovic@gmail.com');
-  await page.click('#identifierNext');
-  await page.waitForSelector('input[type="password"]');
-  await page.fill('input[type="password"]', 'Automationuser1991$');
-  await page.locator('text=Next').click();
+  await gmailLogin(page);
+  
   await page.getByRole('button', { name: 'Refresh' }).click();
   await page.waitForTimeout(5000);
   await page.getByRole('link', { name: 'Your temporary Moveable Feast login code' }).first().click();
