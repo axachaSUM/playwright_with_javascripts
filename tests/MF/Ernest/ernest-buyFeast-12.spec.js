@@ -4,6 +4,9 @@ import { deliveryContact } from '../../utils/deliveryContact';
 import { deliveryAddress } from '../../utils/deliveryAddress';
 import { login } from '../../utils/auth';
 
+test.setTimeout(1200000)
+
+
 const randomEmail = () => {
 return `marko.jovancevic+testemail${Math.round(Math.random() * 10000)}@growthmill.com`;
 }

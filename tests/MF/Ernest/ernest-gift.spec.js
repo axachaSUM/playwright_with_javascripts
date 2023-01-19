@@ -13,10 +13,10 @@ test('Buy Ernest Feast gift', async ({ page }) => {
 
     // click on send a gift button
     await page.frameLocator('#iframe-button-send-a-gift-navigation').locator('button:has-text("Send a gift")').click();
-    await expect(page).toHaveURL('https://frontend.staging.mfeast.io/gift-checkout');
     
     await login(page, randomEmail()); 
     
+    await expect(page).toHaveURL('https://frontend.staging.mfeast.io/gift-checkout');
 
     await page.locator('button:has-text("Continue")').click();
 
@@ -36,9 +36,6 @@ test('Buy Ernest Feast gift', async ({ page }) => {
 
   // Fill [placeholder="MM \/ YY"]
   await page.frameLocator('.StripeElement iframe').locator('[placeholder="MM \\/ YY"]').fill('05 / 25');
-
-  // Click [placeholder="CVC"]
-  // await page.frameLocator('.StripeElement iframe').locator('[placeholder="CVC"]').click();
 
   // Fill [placeholder="CVC"]
   await page.frameLocator('.StripeElement iframe').locator('[placeholder="CVC"]').fill('123');
