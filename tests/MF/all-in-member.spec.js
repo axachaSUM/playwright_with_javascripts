@@ -4,10 +4,10 @@ import { login } from '../utils/auth';
 
 const randomEmail = () => {
     return `marko.jovancevic+testemail${Math.round(Math.random() * 10000)}@growthmill.com`;
-    }
+}
 
 test('Buy all in one membership', async ({ page }) => {
-    
+
     await page.goto("https://mfstaging.webflow.io//")
 
     const seasonalMember = page.getByText('ALL IN MEMBER');
@@ -25,7 +25,7 @@ test('Buy all in one membership', async ({ page }) => {
 
     const email = randomEmail();
 
-    await login(page, email); 
+    await login(page, email);
 
     await expect(page).toHaveURL('https://frontend.staging.mfeast.io/membership-checkout?productId=prod_Mm7QXvpoNI6Fxe');
 
