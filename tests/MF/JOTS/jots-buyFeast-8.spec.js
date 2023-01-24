@@ -8,29 +8,29 @@ const randomEmail = () => {
 }
 
 test('JotS buy 8 people feast e2e test', async ({ page }) => {
-    
-    //navigate
-    await page.goto("https://mfstaging.webflow.io//")
 
-    await page.locator('.nav-link >> nth=3').click();
+  //navigate
+  await page.goto("https://mfstaging.webflow.io//")
 
-    await expect(page).toHaveURL('https://mfstaging.webflow.io/jewel-of-the-south');
+  await page.locator('.nav-link >> nth=3').click();
 
-    await page.locator('text=Learn more', {timeout: 10000}).click();
+  await expect(page).toHaveURL('https://mfstaging.webflow.io/jewel-of-the-south');
 
-    await page.waitForLoadState();
+  await page.locator('text=Learn more', { timeout: 10000 }).click();
 
-    await login(page, randomEmail());
+  await page.waitForLoadState();
 
-    await page.waitForLoadState();
+  await login(page, randomEmail());
 
-    await page.locator('[placeholder="Enter your zip..."]').fill('94114');
+  await page.waitForLoadState();
 
-    await page.locator('button:has-text("Continue")').click();
+  // removed zip code valadtion i will leave it here just in case i need it again
+  // await page.locator('[placeholder="Enter your zip..."]').fill('94114');
+  // await page.locator('button:has-text("Continue")').click();
 
-    await page.locator('[placeholder="Allergies information"]').fill('NemamAlergiju');
+  await page.locator('[placeholder="Allergies information"]').fill('NemamAlergiju');
 
-    await page.locator('button:has-text("Next")').click();
+  await page.locator('button:has-text("Next")').click();
 
   // Click button:has-text("Next")
   await page.locator('button:has-text("Next")').click();
@@ -86,13 +86,13 @@ test('JotS buy 8 people feast e2e test', async ({ page }) => {
 
   // Click button:has-text("Submit")
   await page.getByRole('button', { name: 'Submit' }).click();
-  
+
   // await page.waitForLoadState();
 
   // Click button:has-text("PAYMENT")
   // await page.locator('//*[@id="root"]/div[1]/div[3]/div/div/form/div/div[3]/div[2]/button').click();
   // await page.locator('button:has-text("PAYMENT")').click();
-   await page.locator('text=PAYMENT', {timeout: 10000}).click();
+  await page.locator('text=PAYMENT', { timeout: 10000 }).click();
 
   await page.waitForLoadState();
 
@@ -104,7 +104,7 @@ test('JotS buy 8 people feast e2e test', async ({ page }) => {
   // Click button:has-text("See all orders")
   await page.locator('button:has-text("See all orders")').click();
   await expect(page).toHaveURL('https://frontend.staging.mfeast.io/member-account/my-feasts');
-  
+
   // await page.reload();
   // await expect(page.getByText('Ordered')).toBeVisible();
 

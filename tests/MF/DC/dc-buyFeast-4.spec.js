@@ -13,8 +13,7 @@ test('DC buy 4 people feast e2e test', async ({ page }) => {
     //navigate
     await page.goto("https://mfstaging.webflow.io//")
 
-    await page.getByRole('link', { name: 'Learn more' }).nth(0).click();
-    // await page.getByRole('link', { name: 'Reserve your feast' }).first().click();
+    await page.getByRole('link', { name: 'Learn more' }).click();
 
     await expect(page).toHaveURL('https://mfstaging.webflow.io/dirt-candy');
 
@@ -28,9 +27,10 @@ test('DC buy 4 people feast e2e test', async ({ page }) => {
 
     await page.waitForLoadState();
 
-    await page.locator('[placeholder="Enter your zip..."]').fill('94114');
+    // removed zip code valadtion i will leave it here just in case i need it again
+    // // await page.locator('[placeholder="Enter your zip..."]').fill('94114');
 
-    await page.locator('button:has-text("Continue")').click();
+    // await page.locator('button:has-text("Continue")').click();
 
     await page.locator('[placeholder="Allergies information"]').fill('NemamAlergiju');
 

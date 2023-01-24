@@ -16,7 +16,7 @@ test('DC buy 12 people feast e2e test', async ({ page }) => {
   //navigate
   await page.goto("https://mfstaging.webflow.io//")
 
-  await page.getByRole('link', { name: 'Learn more' }).nth(0).click();
+  await page.getByRole('link', { name: 'Learn more' }).click();
 
   await expect(page).toHaveURL('https://mfstaging.webflow.io/dirt-candy');
 

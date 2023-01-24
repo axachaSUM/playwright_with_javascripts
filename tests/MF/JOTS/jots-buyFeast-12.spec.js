@@ -1,107 +1,107 @@
-  import { test, expect } from '@playwright/test';
-  import { fillStripeInfo } from '../../utils/stripe';
+import { test, expect } from '@playwright/test';
+import { fillStripeInfo } from '../../utils/stripe';
 
-  import { login } from '../../utils/auth';
+import { login } from '../../utils/auth';
 
-  const randomEmail = () => {
-    return `marko.jovancevic+testemail${Math.round(Math.random() * 10000)}@growthmill.com`;
-  }
+const randomEmail = () => {
+  return `marko.jovancevic+testemail${Math.round(Math.random() * 10000)}@growthmill.com`;
+}
 
-  test('JotS buy 12 people feast e2e test', async ({ page }) => {
-      
-      //navigate
-      await page.goto("https://mfstaging.webflow.io//")
+test('JotS buy 12 people feast e2e test', async ({ page }) => {
 
-      await page.locator('.nav-link >> nth=3').click();
+  //navigate
+  await page.goto("https://mfstaging.webflow.io//")
 
-      await expect(page).toHaveURL('https://mfstaging.webflow.io/jewel-of-the-south');
+  await page.locator('.nav-link >> nth=3').click();
 
-      await page.locator('text=Learn more', {timeout: 10000}).click();
+  await expect(page).toHaveURL('https://mfstaging.webflow.io/jewel-of-the-south');
 
-      await page.waitForLoadState();
+  await page.locator('text=Learn more', { timeout: 10000 }).click();
 
-      await login(page, randomEmail());
+  await page.waitForLoadState();
 
-      await page.waitForLoadState();
+  await login(page, randomEmail());
 
-      await page.locator('[placeholder="Enter your zip..."]').fill('94114');
+  await page.waitForLoadState();
 
-      await page.locator('button:has-text("Continue")').click();
+  // removed zip code valadtion i will leave it here just in case i need it again
+  // await page.locator('[placeholder="Enter your zip..."]').fill('94114');
+  // await page.locator('button:has-text("Continue")').click();
 
-      await page.locator('[placeholder="Allergies information"]').fill('NemamAlergiju');
+  await page.locator('[placeholder="Allergies information"]').fill('NemamAlergiju');
 
-      await page.locator('button:has-text("Next")').click();
+  await page.locator('button:has-text("Next")').click();
 
-    // Click button:has-text("Next")
-    await page.locator('button:has-text("Next")').click();
-    // Click text=Select Feast size
-    await page.locator('text=Select Feast size').click();
-    // Click #react-select-2-option-1
-    await page.locator('#react-select-2-option-2').click();
+  // Click button:has-text("Next")
+  await page.locator('button:has-text("Next")').click();
+  // Click text=Select Feast size
+  await page.locator('text=Select Feast size').click();
+  // Click #react-select-2-option-1
+  await page.locator('#react-select-2-option-2').click();
 
-    // Click button:has-text("Next")
-    await page.locator('button:has-text("Next")').click();
+  // Click button:has-text("Next")
+  await page.locator('button:has-text("Next")').click();
 
-    // Fill [placeholder="Enter your first name"]
-    await page.locator('[placeholder="Enter your first name"]').fill('Marko');
+  // Fill [placeholder="Enter your first name"]
+  await page.locator('[placeholder="Enter your first name"]').fill('Marko');
 
-    // Click [placeholder="Enter your last name"]
-    await page.locator('[placeholder="Enter your last name"]').click();
+  // Click [placeholder="Enter your last name"]
+  await page.locator('[placeholder="Enter your last name"]').click();
 
-    // Fill [placeholder="Enter your last name"]
-    await page.locator('[placeholder="Enter your last name"]').fill('Jovancevic');
+  // Fill [placeholder="Enter your last name"]
+  await page.locator('[placeholder="Enter your last name"]').fill('Jovancevic');
 
-    // Click [placeholder="\(310\) 832-5016"]
-    await page.locator('[placeholder="\\(310\\) 832-5016"]').click();
+  // Click [placeholder="\(310\) 832-5016"]
+  await page.locator('[placeholder="\\(310\\) 832-5016"]').click();
 
-    // Fill [placeholder="\(310\) 832-5016"]
-    await page.locator('[placeholder="\\(310\\) 832-5016"]').fill('800 444 4444');
+  // Fill [placeholder="\(310\) 832-5016"]
+  await page.locator('[placeholder="\\(310\\) 832-5016"]').fill('800 444 4444');
 
-    // Click button:has-text("Next")
-    await page.locator('button:has-text("Next")').click();
+  // Click button:has-text("Next")
+  await page.locator('button:has-text("Next")').click();
 
-    // Click [placeholder="Enter your address"]
-    await page.locator('[placeholder="Enter your address"]').click();
+  // Click [placeholder="Enter your address"]
+  await page.locator('[placeholder="Enter your address"]').click();
 
-    // Fill [placeholder="Enter your address"]
-    await page.locator('[placeholder="Enter your address"]').fill('200 Ocean Avenue 94112');
+  // Fill [placeholder="Enter your address"]
+  await page.locator('[placeholder="Enter your address"]').fill('200 Ocean Avenue 94112');
 
-    // Click text=200 Ocean Avenue
-    await page.locator('text=200 Ocean Avenue').click();
+  // Click text=200 Ocean Avenue
+  await page.locator('text=200 Ocean Avenue').click();
 
-    // Click [placeholder="Apt\, Suite\, Floor \#\, etc\."]
-    await page.locator('[placeholder="Apt\\, Suite\\, Floor \\#\\, etc\\."]').click();
+  // Click [placeholder="Apt\, Suite\, Floor \#\, etc\."]
+  await page.locator('[placeholder="Apt\\, Suite\\, Floor \\#\\, etc\\."]').click();
 
-    // Fill [placeholder="Apt\, Suite\, Floor \#\, etc\."]
-    await page.locator('[placeholder="Apt\\, Suite\\, Floor \\#\\, etc\\."]').fill('111');
+  // Fill [placeholder="Apt\, Suite\, Floor \#\, etc\."]
+  await page.locator('[placeholder="Apt\\, Suite\\, Floor \\#\\, etc\\."]').fill('111');
 
-    // Click textarea
-    await page.locator('textarea').click();
+  // Click textarea
+  await page.locator('textarea').click();
 
-    // Fill textarea
-    await page.locator('textarea').fill('1233');
-    
-    // Click button:has-text("Submit")
-    await page.getByRole('button', { name: 'Submit' }).click();
-    
-    // await page.waitForLoadState();
+  // Fill textarea
+  await page.locator('textarea').fill('1233');
 
-    // Click button:has-text("PAYMENT")
-    // await page.locator('//*[@id="root"]/div[1]/div[3]/div/div/form/div/div[3]/div[2]/button').click();
-    // await page.locator('button:has-text("PAYMENT")').click();
-    await page.locator('text=PAYMENT', {timeout: 10000}).click();
+  // Click button:has-text("Submit")
+  await page.getByRole('button', { name: 'Submit' }).click();
 
-    await page.waitForLoadState();
+  // await page.waitForLoadState();
 
-    await fillStripeInfo(page);
+  // Click button:has-text("PAYMENT")
+  // await page.locator('//*[@id="root"]/div[1]/div[3]/div/div/form/div/div[3]/div[2]/button').click();
+  // await page.locator('button:has-text("PAYMENT")').click();
+  await page.locator('text=PAYMENT', { timeout: 10000 }).click();
 
-    // Click button:has-text("Submit")
-    await page.locator('button:has-text("Submit")').click();
+  await page.waitForLoadState();
 
-    // Click button:has-text("See all orders")
-    await page.locator('button:has-text("See all orders")').click();
-    await expect(page).toHaveURL('https://frontend.staging.mfeast.io/member-account/my-feasts');
-    
+  await fillStripeInfo(page);
 
-    await page.close();
-  });
+  // Click button:has-text("Submit")
+  await page.locator('button:has-text("Submit")').click();
+
+  // Click button:has-text("See all orders")
+  await page.locator('button:has-text("See all orders")').click();
+  await expect(page).toHaveURL('https://frontend.staging.mfeast.io/member-account/my-feasts');
+
+
+  await page.close();
+});

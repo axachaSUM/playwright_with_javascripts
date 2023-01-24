@@ -7,7 +7,7 @@ test.setTimeout(1200000)
 test('Login with old user and buy feast', async ({ page, context, }) => {
 
   await page.goto('https://mfstaging.webflow.io/');
-  await page.getByRole('link', { name: 'reserve FEAST' }).nth(1).click();
+  await newPage.getByRole('link', { name: 'Learn more' }).click();
   await page.getByRole('link', { name: 'Reserve your feast' }).first().click();
   await page.getByPlaceholder('Enter your email...').fill('mjtesterovic@gmail.com');
   await page.getByRole('button', { name: 'Continue' }).click();
@@ -22,7 +22,7 @@ test('Login with old user and buy feast', async ({ page, context, }) => {
   const newPage = await pagePromise;
   await newPage.waitForLoadState();
 
-  await newPage.getByRole('link', { name: 'Learn more' }).nth(0).click();
+  await newPage.getByRole('link', { name: 'Learn more' }).click();
   
   await expect(newPage).toHaveURL('https://mfstaging.webflow.io/dirt-candy');
 

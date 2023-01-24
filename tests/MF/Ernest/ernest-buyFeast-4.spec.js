@@ -1,40 +1,40 @@
-    import { test, expect } from '@playwright/test';
-    import { fillStripeInfo } from '../../utils/stripe';
-    import { login } from '../../utils/auth';
-    import { deliveryContact } from '../../utils/deliveryContact';
-    import { deliveryAddress } from '../../utils/deliveryAddress';
+import { test, expect } from '@playwright/test';
+import { fillStripeInfo } from '../../utils/stripe';
+import { login } from '../../utils/auth';
+import { deliveryContact } from '../../utils/deliveryContact';
+import { deliveryAddress } from '../../utils/deliveryAddress';
 
-    const randomEmail = () => {
+const randomEmail = () => {
     return `marko.jovancevic+testemail${Math.round(Math.random() * 10000)}@growthmill.com`;
-    }
+}
 
-    test('Ernest buy 4 people feast e2e test', async ({ page }) => {
-        
-        //navigate
-        await page.goto("https://mfstaging.webflow.io//")
+test('Ernest buy 4 people feast e2e test', async ({ page }) => {
 
-        await page.getByRole('link', { name: 'Learn more' }).nth(1).click();
-        // await page.getByRole('link', { name: 'Reserve your feast' }).first().click();
-    
-        await expect(page).toHaveURL('https://mfstaging.webflow.io/ernest');
+    //navigate
+    await page.goto("https://mfstaging.webflow.io//")
 
-        await page.getByRole('link', { name: 'Reserve your feast' }).first().click();
+    await page.getByRole('link', { name: 'Learn more' }).click();
 
-        await page.waitForLoadState();
+    await expect(page).toHaveURL('https://mfstaging.webflow.io/ernest');
 
-        const email = randomEmail();
+    await page.getByRole('link', { name: 'Reserve your feast' }).first().click();
 
-        await login(page, email);
+    await page.waitForLoadState();
 
-        await page.waitForLoadState();
+    const email = randomEmail();
 
-        await page.locator('[placeholder="Enter your zip..."]').fill('94114');
+    await login(page, email);
 
-        await page.locator('button:has-text("Continue")').click();
+    await page.waitForLoadState();
 
-        await page.locator('[placeholder="Allergies information"]').fill('NemamAlergiju');
+    // removed zip code valadtion i will leave it here just in case i need it again
+    // // await page.locator('[placeholder="Enter your zip..."]').fill('94114');
 
-        await page.locator('button:has-text("Next")').click();
+    // await page.locator('button:has-text("Continue")').click();
+
+    await page.locator('[placeholder="Allergies information"]').fill('NemamAlergiju');
+
+    await page.locator('button:has-text("Next")').click();
 
     // Click button:has-text("Next")
     await page.locator('button:has-text("Next")').click();
@@ -47,8 +47,8 @@
     await page.locator('button:has-text("Next")').click();
     await deliveryContact(page, email);
 
-    await deliveryAddress(page);   
-  
+    await deliveryAddress(page);
+
     //   await page.locator('button:has-text("Submit")').click();
     // await page.locator('button:has-text("Submit")').click();
 
@@ -64,14 +64,14 @@
     // Click button:has-text("See all orders")
     await page.locator('button:has-text("See all orders")').click();
     await expect(page).toHaveURL('https://frontend.staging.mfeast.io/member-account/account/my-feasts');
-    
+
     // await page.reload();
     // await expect(page.getByText('Ordered')).toBeVisible();
 
 
 
     await page.close();
-    });
+});
 
 
 
