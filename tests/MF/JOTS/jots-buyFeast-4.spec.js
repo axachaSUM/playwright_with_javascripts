@@ -12,11 +12,11 @@ test('JotS buy 4 people feast e2e test', async ({ page }) => {
   //navigate
   await page.goto("https://mfstaging.webflow.io//")
 
-  await page.locator('.nav-link >> nth=3').click();
+  await page.getByRole('link', { name: 'Learn more' }).nth(0).click();
 
   await expect(page).toHaveURL('https://mfstaging.webflow.io/jewel-of-the-south');
 
-  await page.locator('text=Learn more', { timeout: 10000 }).click();
+  await page.getByRole("link", { name: "Reserve your feast" }).first().click();
 
   await page.waitForLoadState();
 
@@ -27,7 +27,7 @@ test('JotS buy 4 people feast e2e test', async ({ page }) => {
   // removed zip code valadtion i will leave it here just in case i need it again
   // await page.locator('[placeholder="Enter your zip..."]').fill('94114');
   // await page.locator('button:has-text("Continue")').click();
-  
+
   await page.locator('[placeholder="Allergies information"]').fill('NemamAlergiju');
 
   await page.locator('button:has-text("Next")').click();
