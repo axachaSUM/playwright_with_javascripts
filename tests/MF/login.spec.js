@@ -22,7 +22,7 @@ test('Login with old user and buy feast', async ({ page, context, }) => {
   const newPage = await pagePromise;
   await newPage.waitForLoadState();
 
-  await newPage.getByRole('link', { name: 'reserve feast' }).nth(0).click();
+  await newPage.getByRole('link', { name: 'Learn more' }).nth(0).click();
   
   await expect(newPage).toHaveURL('https://mfstaging.webflow.io/dirt-candy');
 

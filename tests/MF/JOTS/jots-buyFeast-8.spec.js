@@ -16,7 +16,7 @@ test('JotS buy 8 people feast e2e test', async ({ page }) => {
 
     await expect(page).toHaveURL('https://mfstaging.webflow.io/jewel-of-the-south');
 
-    await page.locator('text=Reserve Your Feast', {timeout: 10000}).click();
+    await page.locator('text=Learn more', {timeout: 10000}).click();
 
     await page.waitForLoadState();
 

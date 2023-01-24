@@ -13,7 +13,7 @@
         //navigate
         await page.goto("https://mfstaging.webflow.io//")
 
-        await page.getByRole('link', { name: 'reserve feast' }).nth(1).click();
+        await page.getByRole('link', { name: 'Learn more' }).nth(1).click();
         // await page.getByRole('link', { name: 'Reserve your feast' }).first().click();
     
         await expect(page).toHaveURL('https://mfstaging.webflow.io/ernest');
