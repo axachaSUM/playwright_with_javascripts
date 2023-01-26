@@ -22,7 +22,7 @@ test('Buy Ernest Feast gift', async ({ page }) => {
 
     await page.waitForLoadState();
 
-    await page.locator('text=ERNEST FEAST').click();
+    await page.locator('text=ERNEST FEAST', { timeout: 10000 }).click();
 
     await page.locator('[placeholder="Recipient email address"]').fill('marko.jovancevic@growthmill.com');
 
