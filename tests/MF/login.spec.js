@@ -1,5 +1,4 @@
 import { test, expect } from '@playwright/test';
-import { fillStripeInfo } from '../utils/stripe';
 import { gmailLogin } from '../utils/gmailLogin';
 
 test.setTimeout(1200000)
@@ -22,11 +21,11 @@ test('Login with old user and buy feast', async ({ page, context, }) => {
   const newPage = await pagePromise;
   await newPage.waitForLoadState();
 
-  await page.getByRole('link', { name: 'Learn more' }).nth(2).click();
+  await newPage.getByRole('link', { name: 'Learn more' }).click();
   
   await expect(newPage).toHaveURL('https://mfstaging.webflow.io/ernest');
 
-  await newPage.getByRole("link", { name: "Reserve your feast" }).first().click();
+  await newPage.getByRole('link', { name: 'Reserve Now' }).first().click();
 
   await newPage.locator('[placeholder="Allergies information"]').fill('NemamAlergiju');
 
@@ -49,8 +48,6 @@ test('Login with old user and buy feast', async ({ page, context, }) => {
   await newPage.locator("text=reed >> nth=0", { timeout: 10000 }).click();
   
   await newPage.locator("text=PAYMENT", { timeout: 10000 }).click();
-
-  await fillStripeInfo(newPage);
 
   await newPage.getByRole("button", { name: "See all orders" }).click();
 
