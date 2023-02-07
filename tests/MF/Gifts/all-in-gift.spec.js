@@ -5,7 +5,7 @@ const randomEmail = () => {
   return `marko.jovancevic+testemail${Math.round(Math.random() * 10000)}@growthmill.com`;
 }
 
-test('Buy JotS Feast Gift', async ({ page }) => {
+test('Buy All in membership Gift', async ({ page }) => {
     
     //navigate to mfWebFlowSTG
     await page.goto("https://mfstaging.webflow.io//")
@@ -23,7 +23,7 @@ test('Buy JotS Feast Gift', async ({ page }) => {
 
     await expect(page).toHaveURL('https://frontend.staging.mfeast.io/gift-checkout');
 
-    await page.locator('text=JEWEL OF THE SOUTH FEAST').click();
+    await page.locator('text=All In Membership').click();
 
     await page.locator('[placeholder="Recipient email address"]').fill('marko.jovancevic@growthmill.com');
 

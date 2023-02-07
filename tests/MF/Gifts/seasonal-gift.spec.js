@@ -1,23 +1,28 @@
 import { test, expect } from '@playwright/test';
+
 import { login } from '../../utils/auth';
- 
+
 const randomEmail = () => {
-    return `marko.jovancevic+testemail${Math.round(Math.random() * 10000)}@growthmill.com`;
+  return `marko.jovancevic+testemail${Math.round(Math.random() * 10000)}@growthmill.com`;
 }
 
-test('Buy Dirty Candy Feast Gift', async ({ page }) => {
+test('Buy Seasonal membership gift', async ({ page }) => {
+    
+    //navigate to mfWebFlowSTG
     await page.goto("https://mfstaging.webflow.io//")
 
     // click on send a gift button
     await page.frameLocator('#iframe-button-send-a-gift-navigation').locator('button:has-text("Send a gift")').click();
-
-    await login(page, randomEmail());
-
+    
+    await login(page, randomEmail()); 
+    
     await expect(page).toHaveURL('https://frontend.staging.mfeast.io/gift-checkout');
+
+    await page.locator('button:has-text("Continue")').click();
 
     await page.waitForLoadState();
 
-    await page.locator('text=DIRT CANDY FEAST').click();
+    await page.locator('text=Seasonal Membership', { timeout: 10000 }).click();
 
     await page.locator('[placeholder="Recipient email address"]').fill('marko.jovancevic@growthmill.com');
 
@@ -38,6 +43,8 @@ test('Buy Dirty Candy Feast Gift', async ({ page }) => {
   // Click button:has-text("Submit")
   await page.locator('button:has-text("Submit")').click();
 
+  // Click button:has-text("See all orders")
+  
 
   await expect(page.getByText('Confirmation!')).toBeVisible();
   

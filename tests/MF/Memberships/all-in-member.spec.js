@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
-import { fillStripeInfo } from '../utils/stripe';
-import { login } from '../utils/auth';
+import { fillStripeInfo } from '../../utils/stripe';
+import { login } from '../../utils/auth';
 
 const randomEmail = () => {
     return `marko.jovancevic+testemail${Math.round(Math.random() * 10000)}@growthmill.com`;
@@ -35,7 +35,7 @@ test('Buy all in one membership', async ({ page }) => {
 
     await page.locator('button:has-text("Explore Feasts")').click();
 
-    await expect(page).toHaveURL('https://mfstaging.webflow.io/#feasts');
+    await expect(page).toHaveURL('https://mfstaging.webflow.io/current-season#feasts');
 
     await page.close();
 

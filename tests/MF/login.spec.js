@@ -7,8 +7,8 @@ test.setTimeout(1200000)
 test('Login with old user and buy feast', async ({ page, context, }) => {
 
   await page.goto('https://mfstaging.webflow.io/');
-  await page.getByRole('link', { name: 'Learn more' }).nth(2).click();
-  await page.getByRole('link', { name: 'Reserve your feast' }).first().click();
+  await page.getByRole('link', { name: 'Learn more' }).click();
+  await page.getByRole('link', { name: 'Reserve now' }).first().click();
   await page.getByPlaceholder('Enter your email...').fill('mjtesterovic@gmail.com');
   await page.getByRole('button', { name: 'Continue' }).click();
 

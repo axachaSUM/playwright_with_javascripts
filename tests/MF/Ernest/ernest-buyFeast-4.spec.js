@@ -41,7 +41,6 @@ test('Ernest buy 4 people feast e2e test', async ({ page }) => {
     await page.locator('text=Select Feast size').click();
     // Click #react-select-2-option-1
     await page.locator('#react-select-2-option-0').click();
-
     // Click button:has-text("Next")
     await page.locator('button:has-text("Next")').click();
     await deliveryContact(page, email);
