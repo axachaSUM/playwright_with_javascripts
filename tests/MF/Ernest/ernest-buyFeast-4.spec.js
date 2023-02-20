@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test, expect, chromium, defineConfig } from '@playwright/test';
 import { fillStripeInfo } from '../../utils/stripe';
 import { login } from '../../utils/auth';
 import { deliveryContact } from '../../utils/deliveryContact';
@@ -8,16 +8,19 @@ const randomEmail = () => {
     return `marko.jovancevic+testemail${Math.round(Math.random() * 10000)}@growthmill.com`;
 }
 
-test('Ernest buy 4 people feast e2e test', async ({ page }) => {
+test.setTimeout(120000);
 
+// test.use({ launchOptions: { slowMo: 2000 } });
+
+test('Ernest buy 4 people feast e2e test', async ({ page }) => {
     //navigate
     await page.goto("https://mfstaging.webflow.io//")
 
-    await page.getByRole('link', { name: 'Learn more' }).click();
+    await page.getByRole('link', { name: 'LIMITED RESERVATIONS OPEN NOW' }).click();
 
     await expect(page).toHaveURL('https://mfstaging.webflow.io/ernest');
 
-    await page.getByRole('link', { name: 'Reserve Now' }).first().click();
+    await page.getByRole('link', { name: 'LIMITED RESERVATIONS OPEN NOW' }).first().click();
 
     await page.waitForLoadState();
 
@@ -27,10 +30,6 @@ test('Ernest buy 4 people feast e2e test', async ({ page }) => {
 
     await page.waitForLoadState();
 
-    await page.getByRole('heading', { name: 'individual feast' }).click();
-
-    await page.getByRole('button', { name: 'Confirm' }).click();
-
     await page.locator('[placeholder="Allergies information"]').fill('NemamAlergiju');
 
     await page.locator('button:has-text("Next")').click();
@@ -38,14 +37,33 @@ test('Ernest buy 4 people feast e2e test', async ({ page }) => {
     // Click button:has-text("Next")
     await page.locator('button:has-text("Next")').click();
     // Click text=Select Feast size
+    
+    expect(page.locator('text=Select Feast size')).toBeVisible();
+
     await page.locator('text=Select Feast size').click();
-    // Click #react-select-2-option-1
+    
+    expect(page.locator('#react-select-2-option-0')).toBeVisible();
+    
     await page.locator('#react-select-2-option-0').click();
-    // Click button:has-text("Next")
+    
     await page.locator('button:has-text("Next")').click();
+
     await deliveryContact(page, email);
 
     await deliveryAddress(page);
+
+    // const rowLocator = page.locator('First Name');
+
+    // await rowLocator
+    //     .filter({ hasText: 'MJ' });
+
+    // page.getByText('MJ').isVisible();
+
+    // page.getByText('Jovancevic').isVisible();
+
+    // expect(page.locator('//*[@id="root"]/div[1]/div[3]/div/div/form/div/div[1]/div[4]/div[1]/div/input')).toHaveText('MJ');
+
+    expect(page.locator('//*[@id="root"]/div[1]/div[3]/div/div/form/div/div[3]/div/div[1]/div[1]')).toHaveText('Ernest | 4 people$385');
 
     await page.locator('text=PAYMENT', { timeout: 10000 }).click();
 
@@ -55,12 +73,11 @@ test('Ernest buy 4 people feast e2e test', async ({ page }) => {
 
     // Click button:has-text("See all orders")
     await page.locator('button:has-text("See all orders")').click();
+
     await expect(page).toHaveURL('https://frontend.staging.mfeast.io/member-account/account/my-feasts');
 
     await page.close();
 });
-
-
 
 
 
