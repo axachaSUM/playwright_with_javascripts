@@ -10,7 +10,7 @@ const randomEmail = () => {
 
 test.setTimeout(120000);
 
-test.use({ launchOptions: { slowMo: 2000 } });
+// test.use({ launchOptions: { slowMo: 2000 } });
 
 test('Ernest buy 4 people feast e2e test', async ({ page }) => {
     //navigate
@@ -57,7 +57,7 @@ test('Ernest buy 4 people feast e2e test', async ({ page }) => {
     // await rowLocator
     //     .filter({ hasText: 'MJ' });
 
-    // page.getByText('MJ').isVisible();
+    // await expect(page.getByText('MJ')).toBeVisible();
 
     // page.getByText('Jovancevic').isVisible();
 

@@ -4,7 +4,7 @@ import { deliveryAddress } from '../../utils/deliveryAddress';
 import { deliveryContact } from '../../utils/deliveryContact';
 import { login } from '../../utils/auth';
 
-test.setTimeout(1200000)
+test.setTimeout(120000)
 
 
 const randomEmail = () => {
@@ -16,11 +16,11 @@ test('Ernest buy 8 people feast e2e test', async ({ page }) => {
     //navigate
     await page.goto("https://mfstaging.webflow.io//")
 
-    await page.getByRole('link', { name: 'Learn more' }).nth(2).click();
+    await page.getByRole('link', { name: 'LIMITED RESERVATIONS OPEN NOW' }).click();
 
     await expect(page).toHaveURL('https://mfstaging.webflow.io/ernest');
 
-    await page.getByRole("link", { name: "Reserve your feast" }).first().click();
+    await page.getByRole('link', { name: 'LIMITED RESERVATIONS OPEN NOW' }).first().click();
 
     await page.waitForLoadState();
 
