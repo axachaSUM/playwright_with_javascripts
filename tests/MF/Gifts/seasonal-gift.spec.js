@@ -11,9 +11,19 @@ test('Buy Seasonal membership gift', async ({ page }) => {
     //navigate to mfWebFlowSTG
     await page.goto("https://mfstaging.webflow.io//")
 
-    // click on send a gift button
-    await page.frameLocator('#iframe-button-send-a-gift-navigation').locator('button:has-text("Send a gift")').click();
-    
+    const giftButton = page.getByText('Limited Reservations open now');
+
+    const box = await giftButton.boundingBox();
+
+    if (box) {
+        const y = box.y;
+        await page.mouse.wheel(0, y);
+    }
+
+
+    await page.frameLocator('#iframe-button-send-a-gift').getByRole('button', { name: 'Send a gift' }).click();
+
+    await expect(page).toHaveURL('https://frontend.staging.mfeast.io/login');
     await login(page, randomEmail()); 
     
     await expect(page).toHaveURL('https://frontend.staging.mfeast.io/gift-checkout');

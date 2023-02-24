@@ -7,10 +7,9 @@ const randomEmail = () => {
 
 test('Buy All in membership Gift', async ({ page }) => {
     
-    //navigate to mfWebFlowSTG
     await page.goto("https://mfstaging.webflow.io//")
 
-    const giftButton = page.getByText('Gift a Moveable Feast');
+    const giftButton = page.getByText('Limited Reservations open now');
 
     const box = await giftButton.boundingBox();
 
@@ -18,8 +17,8 @@ test('Buy All in membership Gift', async ({ page }) => {
         const y = box.y;
         await page.mouse.wheel(0, y);
     }
-    // click on send a gift button
-    
+
+
     await page.frameLocator('#iframe-button-send-a-gift').getByRole('button', { name: 'Send a gift' }).click();
 
     await expect(page).toHaveURL('https://frontend.staging.mfeast.io/login');
