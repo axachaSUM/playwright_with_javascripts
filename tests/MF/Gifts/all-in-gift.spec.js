@@ -25,8 +25,6 @@ test('Buy All in membership Gift', async ({ page }) => {
 
     await login(page, randomEmail()); 
     
-    await page.locator('button:has-text("Continue")').click();
-
     await page.waitForLoadState();
 
     await expect(page).toHaveURL('https://frontend.staging.mfeast.io/gift-checkout');

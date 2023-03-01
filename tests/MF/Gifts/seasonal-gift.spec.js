@@ -28,8 +28,6 @@ test('Buy Seasonal membership gift', async ({ page }) => {
     
     await expect(page).toHaveURL('https://frontend.staging.mfeast.io/gift-checkout');
 
-    await page.locator('button:has-text("Continue")').click();
-
     await page.waitForLoadState();
 
     await page.locator('text=Seasonal Membership', { timeout: 10000 }).click();
