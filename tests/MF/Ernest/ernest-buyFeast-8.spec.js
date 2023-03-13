@@ -11,6 +11,8 @@ const randomEmail = () => {
     return `marko.jovancevic+testemail${Math.round(Math.random() * 10000)}@growthmill.com`;
 }
 
+// test.use({ launchOptions: { slowMo: 1000 } });
+
 test('Ernest buy 8 people feast e2e test', async ({ page }) => {
 
     //navigate

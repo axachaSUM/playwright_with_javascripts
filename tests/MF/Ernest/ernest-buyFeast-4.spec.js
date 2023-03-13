@@ -10,7 +10,7 @@ const randomEmail = () => {
 
 test.setTimeout(120000);
 
-// test.use({ launchOptions: { slowMo: 2000 } });
+// test.use({ launchOptions: { slowMo: 1000 } });
 
 test('Ernest buy 4 people feast e2e test', async ({ page }) => {
     //navigate
@@ -30,7 +30,7 @@ test('Ernest buy 4 people feast e2e test', async ({ page }) => {
 
     await page.waitForLoadState();
 
-    await page.locator('[placeholder="Allergies information"]').fill('NemamAlergiju');
+    await page.locator('[placeholder="Allergies information"]').fill('No Allergie');
 
     await page.locator('button:has-text("Next")').click();
 
@@ -52,16 +52,9 @@ test('Ernest buy 4 people feast e2e test', async ({ page }) => {
 
     await deliveryAddress(page);
 
-    // const rowLocator = page.locator('First Name');
-
-    // await rowLocator
-    //     .filter({ hasText: 'MJ' });
-
-    // await expect(page.getByText('MJ')).toBeVisible();
-
-    // page.getByText('Jovancevic').isVisible();
-
-    // expect(page.locator('//*[@id="root"]/div[1]/div[3]/div/div/form/div/div[1]/div[4]/div[1]/div/input')).toHaveText('MJ');
+    page.waitForLoadState('load');
+ 
+    await expect(page.locator('input[name=lastName]')).toHaveValue('Testerovic');
 
     await page.locator('text=PAYMENT', { timeout: 10000 }).click();
 
